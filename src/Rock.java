@@ -1,4 +1,4 @@
-public class Rock extends Object {
+public class Rock extends Characters {
     protected static String imageLocation;
 
     private int dx;
@@ -9,10 +9,6 @@ public class Rock extends Object {
     }
 
     public void move() {
-
-    }
-
-    public int distanceFromObjects(Object object) {
-        return 0;
+        
     }
 }

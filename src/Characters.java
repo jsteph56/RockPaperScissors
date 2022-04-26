@@ -1,14 +1,13 @@
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public abstract class Object extends Sprite {
+public abstract class Characters extends Sprite {
     protected static int numScissors = 0;
     protected static int numPaper = 0;
     protected static int numRock = 0;
     
-    private static ArrayList<Object> allObjects = new ArrayList<>();
+    private static ArrayList<Characters> allObjects = new ArrayList<>();
 
-    public Object(int x, int y, String imageLocation) {
+    public Characters(int x, int y, String imageLocation) {
         super(x, y);
         allObjects.add(this);
 
@@ -28,11 +27,19 @@ public abstract class Object extends Sprite {
         getimageDimensions();
     }
 
-    public ArrayList<Object> getAllObjects() {
+    public static ArrayList<Characters> getAllObjects() {
         return allObjects;
     }
     
-    public abstract void move();
+    public double distanceFromObjects(Characters chr) {
+        double yDistance = (chr.getY() * this.getY()) * (chr.getY() * this.getY());
+        double xDistance = (chr.getX() * this.getX()) * (chr.getX() * this.getX());
 
-    public abstract int distanceFromObjects(Object object);
+        return Math.sqrt(yDistance + xDistance);
+    }
+
+    public void checkCollisions() {
+
+    }
+    public abstract void move();
 }

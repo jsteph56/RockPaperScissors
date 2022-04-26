@@ -1,4 +1,6 @@
-public class Scissors extends Object {
+import java.util.PriorityQueue;
+
+public class Scissors extends Characters {
     protected static String imageLocation = "resources/scissors.png";
 
     private int dx;
@@ -9,10 +11,24 @@ public class Scissors extends Object {
     }
 
     public void move() {
+        PriorityQueue<Characters> objDistances = new PriorityQueue<>();
+        double minDistance = Double.MAX_VALUE;
+        Characters closest = null;
 
-    }
+        for (Characters chr : Characters.getAllObjects()) {
+            if (chr instanceof Scissors) continue;
+            double temp = this.distanceFromObjects(chr);
 
-    public int distanceFromObjects(Object object) {
-        return 0;
+            if (temp < minDistance) {
+                minDistance = temp;
+                closest = chr;
+            }
+        }
+
+        if (closest instanceof Rock) {
+            //logic to move away form Rock
+        } else if (closest instanceof Paper) {
+            //logic to move towards Paper
+        }
     }
 }

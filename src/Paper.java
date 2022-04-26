@@ -1,4 +1,4 @@
-public class Paper extends Object {
+public class Paper extends Characters {
     protected static String imageLocation;
 
     private int dx;
@@ -10,9 +10,5 @@ public class Paper extends Object {
 
     public void move() {
 
-    }
-
-    public int distanceFromObjects(Object object) {
-        return 0;
     }
 }

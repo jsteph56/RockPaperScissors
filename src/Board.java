@@ -2,22 +2,17 @@ import java.util.Random;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
-import javax.swing.ImageIcon;
+import javax.swing.Timer;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Board extends JPanel implements Runnable {
     private final int B_WIDTH = 1024;
     private final int B_HEIGHT = 780;
-    private final int INITIAL_X = -40;
-    private final int INITIAL_Y = -40;
     private final int DELAY = 25;
     
-    private Image scissors;
-    private Thread animator;
-    private int x, y;
+    private boolean inGame;
+    private Timer timer;
 
     public Board() {
         initBoard();
@@ -26,53 +21,36 @@ public class Board extends JPanel implements Runnable {
     private void initBoard() {
         Random rand = new Random();
 
-        setBackground(Color.black);
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+        setBackground(Color.black);
+        inGame = true;
 
         Scissors scissors1 = new Scissors(rand.nextInt(1024), rand.nextInt(768));
         Scissors scissors2 = new Scissors(rand.nextInt(1024), rand.nextInt(768));
         Rock rock1 = new Rock(rand.nextInt(1024), rand.nextInt(768));
 
-        System.out.println(Object.numScissors);
-        System.out.println(Object.numRock);
-        System.out.println(Object.numPaper);
+        System.out.println(Characters.numScissors);
+        System.out.println(Characters.numRock);
+        System.out.println(Characters.numPaper);
 
-        loadImage();
-        x = INITIAL_X;
-        y = INITIAL_Y;
+        //timer = new Timer(DELAY, this);
+        //timer.start();
     }
 
-    private void loadImage() {
-        ImageIcon icon = new ImageIcon("resources/scissors.png");
-        scissors = icon.getImage();
-    }
-
-    private void drawScissors(Graphics g) {
-        g.drawImage(scissors, x, y, this);
-        Toolkit.getDefaultToolkit().sync();
+    private void drawObjects(Graphics g) {
+        for (Characters chr : Characters.getAllObjects()) {
+            g.drawImage(chr.getImage(), chr.getX(), chr.getY(), this);
+        }
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawScissors(g);
-    }
-
-    @Override
-    public void addNotify() {
-        super.addNotify();
-
-        animator = new Thread(this);
-        animator.start();
-    }
-
-    private void cycle() {
-        x += 1;
-        y += 1;
-
-        if (y > B_HEIGHT) {
-            x = INITIAL_X;
-            y = INITIAL_Y;
+        
+        if (inGame) {
+            drawObjects(g);
+        } else {
+            //drawGameOver(g);
         }
     }
 
@@ -83,7 +61,6 @@ public class Board extends JPanel implements Runnable {
         beforeTime  = System.currentTimeMillis();
 
         while (true) {
-            cycle();
             repaint();
 
             timeDiff = System.currentTimeMillis() - beforeTime;
