@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -8,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Board extends JPanel implements Runnable {
-    private final int B_WIDTH = 1240;
+    private final int B_WIDTH = 1024;
     private final int B_HEIGHT = 780;
     private final int INITIAL_X = -40;
     private final int INITIAL_Y = -40;
@@ -23,11 +24,20 @@ public class Board extends JPanel implements Runnable {
     }
 
     private void initBoard() {
+        Random rand = new Random();
+
         setBackground(Color.black);
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 
-        loadImage();
+        Scissors scissors1 = new Scissors(rand.nextInt(1024), rand.nextInt(768));
+        Scissors scissors2 = new Scissors(rand.nextInt(1024), rand.nextInt(768));
+        Rock rock1 = new Rock(rand.nextInt(1024), rand.nextInt(768));
 
+        System.out.println(Object.numScissors);
+        System.out.println(Object.numRock);
+        System.out.println(Object.numPaper);
+
+        loadImage();
         x = INITIAL_X;
         y = INITIAL_Y;
     }

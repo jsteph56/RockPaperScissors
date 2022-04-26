@@ -1,5 +1,4 @@
 import java.awt.Image;
-import java.util.Random;
 import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
@@ -12,10 +11,8 @@ public class Sprite {
     protected Image image;
 
     public Sprite(int x, int y) {
-        Random rand = new Random();
-        
-        this.x = rand.nextInt(1240 - width);
-        this.y = rand.nextInt(780 - height);
+        this.x = x;
+        this.y = y;
         visible = true;
     }
 
