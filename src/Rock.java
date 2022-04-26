@@ -11,4 +11,8 @@ public class Rock extends Object {
     public void move() {
 
     }
+
+    public int distanceFromObjects(Object object) {
+        return 0;
+    }
 }

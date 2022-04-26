@@ -1,5 +1,5 @@
 public class Paper extends Object {
-    protected static String imageLocation = "C:/Users/Justin/Desktop/GitHubRepositories/RockPaperScissors/resources/scissors.png";
+    protected static String imageLocation;
 
     private int dx;
     private int dy;
@@ -10,5 +10,9 @@ public class Paper extends Object {
 
     public void move() {
 
+    }
+
+    public int distanceFromObjects(Object object) {
+        return 0;
     }
 }

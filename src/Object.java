@@ -33,4 +33,6 @@ public abstract class Object extends Sprite {
     }
     
     public abstract void move();
+
+    public abstract int distanceFromObjects(Object object);
 }
