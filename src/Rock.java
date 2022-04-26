@@ -1,5 +1,5 @@
 public class Rock extends Characters {
-    protected static String imageLocation;
+    private static String imageLocation = "resources/rock.png";
 
     private int dx;
     private int dy;

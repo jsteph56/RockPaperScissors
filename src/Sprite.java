@@ -46,6 +46,14 @@ public class Sprite {
         this.visible = visible;
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
     }

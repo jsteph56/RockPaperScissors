@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.awt.Rectangle;
 
 public abstract class Characters extends Sprite {
     protected static int numScissors = 0;
@@ -32,14 +33,11 @@ public abstract class Characters extends Sprite {
     }
     
     public double distanceFromObjects(Characters chr) {
-        double yDistance = (chr.getY() * this.getY()) * (chr.getY() * this.getY());
-        double xDistance = (chr.getX() * this.getX()) * (chr.getX() * this.getX());
+        double yDistance = (chr.getY() - this.getY()) * (chr.getY() - this.getY());
+        double xDistance = (chr.getX() - this.getX()) * (chr.getX() - this.getX());
 
         return Math.sqrt(yDistance + xDistance);
     }
-
-    public void checkCollisions() {
-
-    }
+    
     public abstract void move();
 }

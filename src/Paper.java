@@ -1,5 +1,5 @@
 public class Paper extends Characters {
-    protected static String imageLocation;
+    private static String imageLocation = "resources/paper.jpg";
 
     private int dx;
     private int dy;

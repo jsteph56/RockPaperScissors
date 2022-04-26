@@ -1,7 +1,5 @@
-import java.util.PriorityQueue;
-
 public class Scissors extends Characters {
-    protected static String imageLocation = "resources/scissors.png";
+    private static String imageLocation = "resources/scissors.png";
 
     private int dx;
     private int dy;
@@ -11,7 +9,6 @@ public class Scissors extends Characters {
     }
 
     public void move() {
-        PriorityQueue<Characters> objDistances = new PriorityQueue<>();
         double minDistance = Double.MAX_VALUE;
         Characters closest = null;
 
